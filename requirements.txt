@@ -1,0 +1,10 @@
+pyrogram>=2.0.106
+tgcrypto>=1.2.5
+python-dotenv
+flask
+requests
+tqdm
+aria2p
+regex
+psutil
+aiohttp
