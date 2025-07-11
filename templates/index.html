@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bot Status</title>
+  <link href="https://fonts.googleapis.com/css2?family=Asap:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <link rel="icon" href="https://i.ibb.co/j9n6nZxD/Op-log.png" type="image/png">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Asap', sans-serif;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .typing {
+      color: #00ffc3;
+      font-size: 1.1rem;
+      font-family: 'Asap', sans-serif;
+      margin-bottom: 10px;
+      height: 24px;
+    }
+
+    .text::after {
+      content: "|";
+      animation: blink 1s infinite;
+      color: #00ffc3;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    .image-glow {
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      padding: 5px;
+      background: linear-gradient(45deg, #ff00cc, #3333ff, #00ccff, #00ff99);
+      background-size: 400% 400%;
+      animation: glowRotate 6s linear infinite;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 20px;
+      box-shadow: 0 0 20px rgba(0,255,255,0.3);
+    }
+
+    .image-glow img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid #111;
+    }
+
+    @keyframes glowRotate {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .container {
+      background: #ffffff10;
+      padding: 40px 60px;
+      border-radius: 20px;
+      box-shadow: 0 20px 30px rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(10px);
+      text-align: center;
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 1;
+      overflow: hidden;
+    }
+
+    .container::before {
+      content: "";
+      position: absolute;
+      top: -3px;
+      left: -3px;
+      right: -3px;
+      bottom: -3px;
+      background: linear-gradient(45deg, #00ffc3, #00ccff, #cc66ff, #ff3399, #00ffc3);
+      background-size: 400% 400%;
+      border-radius: 25px;
+      animation: borderAnim 10s linear infinite;
+      z-index: -1;
+      filter: blur(8px);
+    }
+
+    @keyframes borderAnim {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .status {
+      font-size: 2.5rem;
+      color: #fff;
+      text-shadow: 2px 2px 10px #00ffcc, -2px -2px 10px #006666;
+      margin-bottom: 20px;
+    }
+
+    .channel, .developer {
+      font-size: 1rem;
+      color: #ccc;
+      margin-top: 10px;
+    }
+
+    .channel a {
+      color: #00ffc3;
+      text-decoration: none;
+    }
+
+    .channel a:hover {
+      text-decoration: underline;
+    }
+
+    .button-container {
+      margin-top: 10px;
+    }
+
+    .channel-btn {
+      background: linear-gradient(145deg, #1abc9c, #16a085);
+      color: #fff;
+      font-size: 1rem;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0, 255, 204, 0.3), inset 0 2px 4px rgba(255, 255, 255, 0.2);
+      transition: 0.3s ease;
+      cursor: pointer;
+      font-family: 'Asap', sans-serif;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .channel-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 24px rgba(0, 255, 204, 0.4);
+    }
+
+    .channel-btn i {
+      margin-right: 8px;
+    }
+
+    .footer-badge {
+      position: fixed;
+      bottom: 10px;
+      background: linear-gradient(145deg, #00b894, #0984e3);
+      padding: 10px 20px;
+      color: white;
+      font-weight: bold;
+      font-size: 0.9rem;
+      border-radius: 10px;
+      font-family: 'Asap', sans-serif;
+      box-shadow: 0 5px 15px rgba(0, 255, 255, 0.3);
+      text-align: center;
+    }
+
+    .spinner {
+      width: 40px;
+      height: 40px;
+      margin-top: 20px;
+      border: 4px solid #00ffc3;
+      border-top: 4px solid transparent;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin: 20px auto;
+      box-shadow: 0 0 12px #00ffc3;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding: 20px 25px;
+      }
+
+      .status {
+        font-size: 1.8rem;
+      }
+
+      .channel-btn {
+        font-size: 0.95rem;
+        padding: 10px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="spinner"></div>
+
+  <!-- ✅ Typing Animation -->
+  <div class="typing"><span class="text"></span></div>
+
+  <!-- 🌟 Profile Image with glow -->
+  <div class="image-glow">
+    <img src="https://i.ibb.co/j9n6nZxD/Op-log.png" alt="Bot Logo" />
+  </div>
+
+  <div class="container">
+    <div class="status"><i class="fas fa-robot"></i> Bot is running <i class="fas fa-check-circle"></i></div>
+    <div class="channel"><i class="fas fa-bullhorn"></i> Channel: <a href="https://t.me/Opleech_WD" target="_blank">@Opleech_WD</a></div>
+    <div class="developer"><i class="fas fa-user-cog"></i> Developer: <strong>𝐖𝐎𝐎𝐃𝐜𝐫𝐚𝐟𝐭</strong></div>
+  </div>
+
+  <div class="button-container">
+    <a href="https://t.me/Opleech_WD" class="channel-btn" target="_blank">
+      <i class="fab fa-telegram-plane"></i> Join Our Telegram Channel
+    </a>
+  </div>
+
+  <div class="footer-badge">
+    © 2025 Creator 𝐖𝐎𝐎𝐃𝐜𝐫𝐚𝐟𝐭 ⭐
+  </div>
+
+  <!-- ✅ JavaScript Typing Animation -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const words = ["Terabox Bot is online..."];
+      let i = 0, j = 0, current = "", isDeleting = false;
+      const speed = 120;
+      const el = document.querySelector(".text");
+
+      function type() {
+        if (i < words.length) {
+          if (!isDeleting && j <= words[i].length) {
+            current = words[i].slice(0, j++);
+          } else if (isDeleting && j >= 0) {
+            current = words[i].slice(0, j--);
+          }
+
+          el.innerHTML = current;
+
+          if (j === words[i].length) isDeleting = true;
+          if (isDeleting && j === 0) {
+            isDeleting = false;
+            i = (i + 1) % words.length;
+          }
+
+          setTimeout(type, speed);
+        }
+      }
+
+      type();
+    });
+  </script>
+</body>
+</html>
