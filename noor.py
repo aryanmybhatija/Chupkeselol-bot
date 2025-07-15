@@ -21,17 +21,17 @@ from utils.duration import get_video_duration, sanitize_filename
 
 # Load environment variables
 load_dotenv()
-API_ID = int(os.getenv("API_ID", "1701399"))
-API_HASH = os.getenv("API_HASH", "96089a340f2892fd06aea683cbfbn")
-BOT_TOKEN = os.getenv("BOT_TOKEN", "7398766624:AAHZl1_T8A42WF0Bgm_TPVFhkIV_4X-9")
-BOT_OWNER_ID = int(os.getenv("BOT_OWNER_ID", "6743860300"))
+API_ID = int(os.getenv("API_ID", ""))
+API_HASH = os.getenv("API_HASH", "")
+BOT_TOKEN = os.getenv("BOT_TOKEN", "")
+BOT_OWNER_ID = int(os.getenv("BOT_OWNER_ID", ""))
 # 🖇️ Terabox api
 TERABOX_API = os.getenv("TERABOX_API", "https://noor-terabox-api.woodmirror.workers.dev/api?url=")
 # 🔗 Channel button photo links
-CHANNEL_NAME = os.getenv("CHANNEL_NAME", "⚡❍⊱❁ 𝐖𝐃 𝐙𝐎𝐍𝐄 ™")
-CHANNEL_URL = os.getenv("CHANNEL_URL", "https://t.me/Opleech_WD")
-WELCOME_URL = os.getenv("WELCOME_URL", "https://i.ibb.co/j9n6nZxD/Op-log.png")
-USER_URL = os.getenv("PHOTO_URL", "https://i.ibb.co/7dc9sd45/Noor-logo.png")
+CHANNEL_NAME = os.getenv("CHANNEL_NAME", "⚡Team Sonu ™")
+CHANNEL_URL = os.getenv("CHANNEL_URL", "https://t.me/Team_Sonu2")
+WELCOME_URL = os.getenv("WELCOME_URL", "https://ar-hosting.pages.dev/1751519807441.jpg")
+USER_URL = os.getenv("PHOTO_URL", "https://ar-hosting.pages.dev/1751519808272.jpg")
 # ⭐ Read max size in MB default = 1900 MB
 MAX_SIZE_MB = int(os.getenv("MAX_SIZE", 1900))
 # 💥 Convert MB to bytes
@@ -135,7 +135,7 @@ async def process_terabox(user_id, terabox_url, msg):
         await edit_message(
             msg,
             f"╭━◝━━━━━━━━━━━━◜━╮\n"
-            f"⚡❍⊱❁ 𝐖𝐃 𝐙𝐎𝐍𝐄 ™\n"
+            f"⚡❍⊱❁ Team Sonu™\n"
             f"╰━◞━━━━━━━━━━━━◟━╯\n\n"
             f"🔍 <b>Processing your link...</b>\n"
             f"✨❍⭕️━━━━━━━━━━━━━━━⭕️❍✨"
@@ -178,7 +178,7 @@ async def process_terabox(user_id, terabox_url, msg):
         await edit_message(
             msg,
             f"╭━◝━━━━━━━━━━━━◜━╮\n"
-            f"⚡❍⊱❁ 𝐖𝐃 𝐙𝐎𝐍𝐄 ™\n"
+            f"⚡❍⊱❁ Team Sonu™\n"
             f"╰━◞━━━━━━━━━━━━◟━╯\n\n"
             f"📥 <b>Downloading:</b> <code>{file_name}</code>\n"
             f"📦 <b>Size:</b> {readable_size}\n"
@@ -245,7 +245,7 @@ async def process_terabox(user_id, terabox_url, msg):
                         await edit_message(
                             msg,
                             f"╭━◝━━━━━━━━━━━━◜━╮\n"
-                            f"⚡❍⊱❁ 𝐖𝐃 𝐙𝐎𝐍𝐄 ™\n"
+                            f"⚡❍⊱❁ Team Sonu ™\n"
                             f"╰━◞━━━━━━━━━━━━◟━╯\n\n"
                             f"📥 <b>Downloading:</b> <code>{file_name}</code>\n"
                             f"📦 <b>Size:</b> {readable_size}\n"
@@ -279,7 +279,7 @@ async def process_terabox(user_id, terabox_url, msg):
         await edit_message(
             msg,
             f"╭━◝━━━━━━━━━━━━◜━╮\n"
-            f"⚡❍⊱❁ 𝐖𝐃 𝐙𝐎𝐍𝐄 ™\n"
+            f"⚡❍⊱❁ Team Sonu ™\n"
             f"╰━◞━━━━━━━━━━━━◟━╯\n\n"
             f"📤 <b>Uploading:</b> <code>{file_name}</code>\n"
             f"📦 <b>Size:</b> {readable_size}\n"
@@ -291,7 +291,7 @@ async def process_terabox(user_id, terabox_url, msg):
         # Create caption and download button
         caption = (
             f"╭━◝━━━━━━━━━━━━◜━╮\n"
-            f"⚡❍⊱❁ 𝐖𝐃 𝐙𝐎𝐍𝐄 ™\n"
+            f"⚡❍⊱❁ Team Sonu ™\n"
             f"╰━◞━━━━━━━━━━━━◟━╯\n\n"
             f"<pre>✅ Your File is Ready!</pre>\n\n"
             f"📂 <b>File:</b> <code>{file_name}</code>\n"
@@ -331,7 +331,7 @@ async def process_terabox(user_id, terabox_url, msg):
                     await edit_message(
                         msg,
                         f"╭━◝━━━━━━━━━━━━◜━╮\n"
-                        f"⚡❍⊱❁ 𝐖𝐃 𝐙𝐎𝐍𝐄 ™\n"
+                        f"⚡❍⊱❁ Team Sonu ™\n"
                         f"╰━◞━━━━━━━━━━━━◟━╯\n\n"
                         f"📤 <b>Uploading:</b> <code>{file_name}</code>\n"
                         f"📦 <b>Size:</b> {readable_size}\n"
@@ -433,7 +433,7 @@ async def start_handler(client: Client, message: Message):
         "➤ The bot will fetch & send the file ⚡\n\n"
         "🌐 <b>Supported:</b> <i>(Tap the button below)</i>\n\n"
         "📦 <b>Limit:</b> <code>1.9GB</code>\n"
-        "<pre>👨‍💻 Created by 𝐖𝐎𝐎𝐃𝐜𝐫𝐚𝐟𝐭</pre>"
+        "<pre>👨‍💻 Created by Team_Sonu</pre>"
     )
 
     keyboard = InlineKeyboardMarkup([
@@ -467,7 +467,7 @@ async def callback_query_handler(client, callback_query):
                 "💧 terasharelink.com\n"
                 "💧 1024terabox.com\n"
                 "✨❍⭕️━━━━━━━━━━━━━━━⭕️❍✨\n\n"
-                "⚡❍⊱❁ 𝐖𝐃 𝐙𝐎𝐍𝐄 ™",
+                "⚡❍⊱❁ Team_Sonu  ™",
                 show_alert=True
             )
     except FloodWait as e:
@@ -574,7 +574,7 @@ async def list_users(client, message):
 
         # ✅ Inline button
         developer = InlineKeyboardMarkup([
-            [InlineKeyboardButton("💧𝐖𝐎𝐎𝐃𝐜𝐫𝐚𝐟𝐭 💦", url="https://t.me/Farooq_is_king")]
+            [InlineKeyboardButton("💧 Contact 💦", url="https://t.me/Contact_AdminSbot")]
         ])
 
         # ✅ Try sending with image
@@ -620,7 +620,7 @@ async def message_handler(client: Client, message: Message):
     try:
         msg = await message.reply(
             f"╭━◝━━━━━━━━━━━━◜━╮\n"
-            f"⚡❍⊱❁ 𝐖𝐃 𝐙𝐎𝐍𝐄 ™\n"
+            f"⚡❍⊱❁ Team Sonu ™\n"
             f"╰━◞━━━━━━━━━━━━◟━╯\n\n"
             f"🔍 <b>Processing your link...</b>\n"
             f"✨❍⭕️━━━━━━━━━━━━━━━⭕️❍✨",
