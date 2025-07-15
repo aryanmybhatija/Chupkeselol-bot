@@ -440,8 +440,8 @@ async def start_handler(client: Client, message: Message):
 
     keyboard = InlineKeyboardMarkup([
         [InlineKeyboardButton("🌐 Supported Domains", callback_data="show_supported_domains")],
-        [InlineKeyboardButton(CHANNEL_NAME, url=CHANNEL_URL)]
-        [InlineKeyboardButton(CONTACT_NAME, url=CONTACT_URL)]
+        [InlineKeyboardButton("Channel", url="https://t.me/Team_Sonu2")],
+        [InlineKeyboardButton("🤙 Contact", url="https://t.me/Contact_AdminSbot")]
     ])
 
     try:
