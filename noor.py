@@ -26,7 +26,7 @@ API_HASH = os.getenv("API_HASH", "")
 BOT_TOKEN = os.getenv("BOT_TOKEN", "")
 BOT_OWNER_ID = int(os.getenv("BOT_OWNER_ID", ""))
 # 🖇️ Terabox api
-TERABOX_API = os.getenv("TERABOX_API", "https://noor-terabox-api.woodmirror.workers.dev/api?url=")
+TERABOX_API = os.getenv("TERABOX_API", "https://angel-noor-terabox-api.woodmirror.workers.dev/api?url=")
 # 🔗 Channel button photo links
 CHANNEL_NAME = os.getenv("CHANNEL_NAME", "⚡Team Sonu ™")
 CHANNEL_URL = os.getenv("CHANNEL_URL", "https://t.me/Team_Sonu2")
