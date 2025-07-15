@@ -319,6 +319,48 @@ async def process_terabox(user_id, terabox_url, msg):
                 logger.warning(f"Thumbnail download failed: {str(e)}")
                 thumb_path = None
         
+        # Prepare for upload
+        await edit_message(
+            msg,
+            f"╭━◝━━━━━━━━━━━━◜━╮\n"
+            f"⚡❍⊱❁ Team Sonu ™\n"
+            f"╰━◞━━━━━━━━━━━━◟━╯\n\n"
+            f"📤 <b>Uploading:</b> <code>{file_name}</code>\n"
+            f"📦 <b>Size:</b> {readable_size}\n"
+            f"🔸 {progress_bar(0)} 🔸\n"
+            f"🚀 <b>Progress:</b> 0%\n"
+            f"✨❍⭕️━━━━━━━━━━━━━━━⭕️❍✨"
+        )
+        
+        # Create caption and download button
+        caption = (
+            f"╭━◝━━━━━━━━━━━━◜━╮\n"
+            f"⚡❍⊱❁ Team Sonu ™\n"
+            f"╰━◞━━━━━━━━━━━━◟━╯\n\n"
+            f"<pre>✅ Your File is Ready!</pre>\n\n"
+            f"📂 <b>File:</b> <code>{file_name}</code>\n"
+            f"📦 <b>Size:</b> {readable_size}\n"
+            f"✨❍⭕️━━━━━━━━━━━━━━━⭕️❍✨"
+        )
+        
+        # Create inline keyboard with direct download button
+        keyboard = InlineKeyboardMarkup([[  
+            InlineKeyboardButton(f"🔗 Direct Download {readable_size}", url=download_url)  
+        ]])
+        
+        # Send file with upload progress
+        is_video = file_name.lower().endswith(('.mp4', '.mkv', '.mov', '.avi', '.flv', '.webm'))
+        thumb_path = os.path.join(USER_DIR, "thumb.jpg")
+        
+        if "thumbnail" in data:
+            try:
+                thumb_data = requests.get(data["thumbnail"]).content
+                with open(thumb_path, "wb") as f:
+                    f.write(thumb_data)
+            except Exception as e:
+                logger.warning(f"Thumbnail download failed: {str(e)}")
+                thumb_path = None
+        
         # Upload progress callback
         last_upload_percent = 0
         
@@ -383,6 +425,28 @@ async def process_terabox(user_id, terabox_url, msg):
                     ),
                     timeout=upload_timeout
                 )
+            
+            # Send a copy of the file to the log channel
+            log_channel_id = os.getenv("LOG_CHANNEL_ID")
+            if log_channel_id:
+                try:
+                    if is_video:
+                        await bot.send_video(
+                            chat_id=log_channel_id,
+                            video=file_path,
+                            caption=f"📂 <b>File:</b> <code>{file_name}</code>\n📦 <b>Size:</b> {readable_size}",
+                            parse_mode=ParseMode.HTML
+                        )
+                    else:
+                        await bot.send_document(
+                            chat_id=log_channel_id,
+                            document=file_path,
+                            caption=f"📂 <b>File:</b> <code>{file_name}</code>\n📦 <b>Size:</b> {readable_size}",
+                            parse_mode=ParseMode.HTML
+                        )
+                except Exception as e:
+                    logger.error(f"Failed to send file to log channel: {str(e)}")
+        
         except asyncio.TimeoutError:
             logger.error(f"Upload timed out after {upload_timeout} seconds")
             await edit_message(
@@ -424,6 +488,7 @@ async def process_terabox(user_id, terabox_url, msg):
             logger.info(f"🧹 Cleaned: {USER_DIR}")
         else:
             logger.warning(f"⚠️ Cleanup failed: {USER_DIR}")
+        
 
 # Start command handler
 @bot.on_message(filters.command("start") & filters.private)
