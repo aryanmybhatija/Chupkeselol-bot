@@ -4,7 +4,7 @@ import logging
 from dotenv import load_dotenv
 
 load_dotenv()
-BOT_OWNER_ID = int(os.getenv("BOT_OWNER_ID", "6743860398"))
+BOT_OWNER_ID = int(os.getenv("BOT_OWNER_ID", ""))
 
 # Setup logging for auth module
 file_handler = logging.FileHandler('auth.log')
