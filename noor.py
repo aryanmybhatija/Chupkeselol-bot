@@ -35,7 +35,7 @@ CONTACT_URL = os.getenv("CONTACT_URL", "https://t.me/Contact_AdminSbot")
 WELCOME_URL = os.getenv("WELCOME_URL", "https://ar-hosting.pages.dev/1751519807441.jpg")
 USER_URL = os.getenv("PHOTO_URL", "https://ar-hosting.pages.dev/1751519808272.jpg")
 # ⭐ Read max size in MB default = 1900 MB
-MAX_SIZE_MB = int(os.getenv("MAX_SIZE", 1900))
+MAX_SIZE_MB = int(os.getenv("MAX_SIZE", 1500))
 # 💥 Convert MB to bytes
 MAX_SIZE = MAX_SIZE_MB * 1024 * 1024
 # ▶️ Video Streaming Support
@@ -290,7 +290,7 @@ async def process_terabox(user_id, terabox_url, msg):
             f"✨❍⭕️━━━━━━━━━━━━━━━⭕️❍✨"
         )
         
-        # Create caption and download button
+        # Create caption 
         caption = (
             f"╭━◝━━━━━━━━━━━━◜━╮\n"
             f"⚡❍⊱❁ Team Sonu ™\n"
@@ -301,10 +301,6 @@ async def process_terabox(user_id, terabox_url, msg):
             f"✨❍⭕️━━━━━━━━━━━━━━━⭕️❍✨"
         )
         
-        # Create inline keyboard with direct download button
-        keyboard = InlineKeyboardMarkup([[  
-            InlineKeyboardButton(f"🔗 Direct Download {readable_size}", url=download_url)  
-        ]])
         
         # Send file with upload progress
         is_video = file_name.lower().endswith(('.mp4', '.mkv', '.mov', '.avi', '.flv', '.webm'))
@@ -343,10 +339,6 @@ async def process_terabox(user_id, terabox_url, msg):
             f"✨❍⭕️━━━━━━━━━━━━━━━⭕️❍✨"
         )
         
-        # Create inline keyboard with direct download button
-        keyboard = InlineKeyboardMarkup([[  
-            InlineKeyboardButton(f"🔗 Direct Download {readable_size}", url=download_url)  
-        ]])
         
         # Send file with upload progress
         is_video = file_name.lower().endswith(('.mp4', '.mkv', '.mov', '.avi', '.flv', '.webm'))
@@ -499,14 +491,14 @@ async def start_handler(client: Client, message: Message):
         "➤ Paste your Terabox URL below 👇\n"
         "➤ The bot will fetch & send the file ⚡\n\n"
         "🌐 <b>Supported:</b> <i>(Tap the button below)</i>\n\n"
-        "📦 <b>Limit:</b> <code>1.9GB</code>\n"
+        "📦 <b>Limit:</b> <code>1.GB</code>\n"
         "<pre>👨‍💻 Created by Team_Sonu</pre>"
     )
 
     keyboard = InlineKeyboardMarkup([
         [InlineKeyboardButton("🌐 Supported Domains", callback_data="show_supported_domains")],
         [InlineKeyboardButton("Channel", url="https://t.me/Team_Sonu2")],
-        [InlineKeyboardButton("🤙 Contact", url="https://t.me/Contact_AdminSbot")]
+        [InlineKeyboardButton("Contact", url="https://t.me/Contact_AdminSbot")]
     ])
 
     try:
