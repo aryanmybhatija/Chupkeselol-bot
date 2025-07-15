@@ -452,31 +452,32 @@ async def process_terabox(user_id, terabox_url, msg):
         
         
 
-# Channel ID
+# Start command handler
 @bot.on_message(filters.command("start") & filters.private)
 async def start_handler(client: Client, message: Message):
+            caption = (
+              "<pre>🔷🔹🔸♦️◈ 𝗧𝗘𝗥𝗔𝗕𝗢𝗫 𝗕𝗢𝗧 ◈♦️🔸🔹🔷</pre>\n\n"
+              "📘 <b>How It Works:</b>\n"
+              "➤ Paste your Terabox URL below 👇\n"
+              "➤ The bot will fetch & send the file ⚡\n\n"
+              "🌐 <b>Supported:</b> <i>(Tap the button below)</i>\n\n"
+              "📦 <b>Limit:</b> <code>1.GB</code>\n"
+              "<pre>👨‍💻 Created by Stack Sadhu</pre>"
+            )
+
+
+      keyboard = InlineKeyboardMarkup([
+        [InlineKeyboardButton("🌐 Supported Domains", callback_data="show_supported_domains")],
+        [InlineKeyboardButton("Join Channel", url="https://t.me/+hsRtLzkiVPg0ZTFl")],
+        [InlineKeyboardButton("Contact", url="https://t.me/Contact_AdminSbot")]
+    ])
+
     try:
-        caption = (
-            "<pre>🔷🔹🔸♦️◈ 𝗧𝗘𝗥𝗔𝗕𝗢𝗫 𝗕𝗢𝗧 ◈♦️🔸🔹🔷</pre>\n\n"
-            "📘 <b>How It Works:</b>\n"
-            "➤ Paste your Terabox URL below 👇\n"
-            "➤ The bot will fetch & send the file ⚡\n\n"
-            "🌐 <b>Supported:</b> <i>(Tap the button below)</i>\n\n"
-            "📦 <b>Limit:</b> <code>1.GB</code>\n"
-            "<pre>👨‍💻 Created by Stack Sadhu</pre>"
-        )
-
-        keyboard = InlineKeyboardMarkup([
-            [InlineKeyboardButton("🌐 Supported Domains", callback_data="show_supported_domains")],
-            [InlineKeyboardButton("Join Channel", url="https://t.me/+hsRtLzkiVPg0ZTFl")],
-            [InlineKeyboardButton("Contact", url="https://t.me/Contact_AdminSbot")]
-        ])
-
         await message.reply_photo(
             photo=WELCOME_URL,
             caption=caption,
             reply_markup=keyboard,
-            parse_mode="HTML"
+            parse_mode=ParseMode.HTML
         )
     except FloodWait as e:
         await asyncio.sleep(e.value)
