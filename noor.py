@@ -467,7 +467,7 @@ async def start_handler(client: Client, message: Message):
 
     keyboard = InlineKeyboardMarkup([
         [InlineKeyboardButton("🌐 Supported Domains", callback_data="show_supported_domains")],
-        [InlineKeyboardButton("Join Channel", url="https://t.me/Team_Sonu2")],
+        [InlineKeyboardButton("Join Channel", url="https://t.me/+hsRtLzkiVPg0ZTFl")],
         [InlineKeyboardButton("Contact", url="https://t.me/Contact_AdminSbot")]
     ])
 
