@@ -304,7 +304,7 @@ async def process_terabox(user_id, terabox_url, msg):
         
         # Create inline keyboard with direct download button
         keyboard = InlineKeyboardMarkup([[  
-            [InlineKeyboardButton("Join Channel", url="https://t.me/Team_Sonu2")]
+            InlineKeyboardButton(f"🔗 Direct Download {readable_size}", url=download_url)  
         ]])
         
         # Send file with upload progress
