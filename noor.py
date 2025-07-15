@@ -452,35 +452,57 @@ async def process_terabox(user_id, terabox_url, msg):
         
         
 
-# Start command handler
+# Channel ID
+FORCE_CHANNEL_ID = -1002735709676  # Aapka channel ID
+
 @bot.on_message(filters.command("start") & filters.private)
 async def start_handler(client: Client, message: Message):
-    caption = (
-        "<pre>🔷🔹🔸♦️◈ 𝗧𝗘𝗥𝗔𝗕𝗢𝗫 𝗕𝗢𝗧 ◈♦️🔸🔹🔷</pre>\n\n"
-        "📘 <b>How It Works:</b>\n"
-        "➤ Paste your Terabox URL below 👇\n"
-        "➤ The bot will fetch & send the file ⚡\n\n"
-        "🌐 <b>Supported:</b> <i>(Tap the button below)</i>\n\n"
-        "📦 <b>Limit:</b> <code>1.GB</code>\n"
-        "<pre>👨‍💻 Created by Stack Sadhu</pre>"
-    )
-
-    keyboard = InlineKeyboardMarkup([
-        [InlineKeyboardButton("🌐 Supported Domains", callback_data="show_supported_domains")],
-        [InlineKeyboardButton("Join Channel", url="https://t.me/+hsRtLzkiVPg0ZTFl")],
-        [InlineKeyboardButton("Contact", url="https://t.me/Contact_AdminSbot")]
-    ])
-
+    # Check if the user is a member of the channel
     try:
-        await message.reply_photo(
-            photo=WELCOME_URL,
-            caption=caption,
-            reply_markup=keyboard,
-            parse_mode=ParseMode.HTML
+        chat_member = await client.get_chat_member(FORCE_CHANNEL_ID, message.from_user.id)
+        if chat_member.status in ["member", "administrator", "creator"]:
+            # User is a member, proceed with the normal flow
+            caption = (
+                "<pre>🔷🔹🔸♦️◈ 𝗧𝗘𝗥𝗔𝗕𝗢𝗫 𝗕𝗢𝗧 ◈♦️🔸🔹🔷</pre>\n\n"
+                "📘 <b>How It Works:</b>\n"
+                "➤ Paste your Terabox URL below 👇\n"
+                "➤ The bot will fetch & send the file ⚡\n\n"
+                "🌐 <b>Supported:</b> <i>(Tap the button below)</i>\n\n"
+                "📦 <b>Limit:</b> <code>1.GB</code>\n"
+                "<pre>👨‍💻 Created by Stack Sadhu</pre>"
+            )
+
+            keyboard = InlineKeyboardMarkup([
+                [InlineKeyboardButton("🌐 Supported Domains", callback_data="show_supported_domains")],
+                [InlineKeyboardButton("Join Channel", url="https://t.me/+hsRtLzkiVPg0ZTFl")],
+                [InlineKeyboardButton("Contact", url="https://t.me/Contact_AdminSbot")]
+            ])
+
+            try:
+                await message.reply_photo(
+                    photo=WELCOME_URL,
+                    caption=caption,
+                    reply_markup=keyboard,
+                    parse_mode=ParseMode.HTML
+                )
+            except FloodWait as e:
+                await asyncio.sleep(e.value)
+                await start_handler(client, message)
+        else:
+            await message.reply(
+                "❌ You need to join the channel to use this bot.\n"
+                f"👉 [Join Channel](https://t.me/+hsRtLzkiVPg0ZTFl)",
+                disable_web_page_preview=True,
+                reply_markup=InlineKeyboardMarkup([
+                    [InlineKeyboardButton("Join Channel", url="https://t.me/+hsRtLzkiVPg0ZTFl")]
+                ])
+            )
+    except Exception as e:
+        # Handle the case where the bot cannot check the user's membership
+        await message.reply(
+            "⚠️ An error occurred while checking your subscription status. Please try again later."
         )
-    except FloodWait as e:
-        await asyncio.sleep(e.value)
-        await start_handler(client, message)
+        
 
 @bot.on_callback_query()
 async def callback_query_handler(client, callback_query):
