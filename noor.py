@@ -26,10 +26,12 @@ API_HASH = os.getenv("API_HASH", "")
 BOT_TOKEN = os.getenv("BOT_TOKEN", "")
 BOT_OWNER_ID = int(os.getenv("BOT_OWNER_ID", ""))
 # 🖇️ Terabox api
-TERABOX_API = os.getenv("TERABOX_API", "https://noor-terabox-api.woodmirror.workers.dev/api?url=")
+TERABOX_API = os.getenv("TERABOX_API", "https://angel-noor-terabox-api.woodmirror.workers.dev/api?url=")
 # 🔗 Channel button photo links
 CHANNEL_NAME = os.getenv("CHANNEL_NAME", "⚡Team Sonu ™")
 CHANNEL_URL = os.getenv("CHANNEL_URL", "https://t.me/Team_Sonu2")
+CONTACT_NAME = os.getenv("CHANNEL_NAME", "🤙 Contact ™")
+CONTACT_URL = os.getenv("CHANNEL_URL", "https://t.me/Contact_AdminSbot")
 WELCOME_URL = os.getenv("WELCOME_URL", "https://ar-hosting.pages.dev/1751519807441.jpg")
 USER_URL = os.getenv("PHOTO_URL", "https://ar-hosting.pages.dev/1751519808272.jpg")
 # ⭐ Read max size in MB default = 1900 MB
@@ -439,6 +441,7 @@ async def start_handler(client: Client, message: Message):
     keyboard = InlineKeyboardMarkup([
         [InlineKeyboardButton("🌐 Supported Domains", callback_data="show_supported_domains")],
         [InlineKeyboardButton(CHANNEL_NAME, url=CHANNEL_URL)]
+        [InlineKeyboardButton(CONTACT_NAME, url=CONTACT_URL)]
     ])
 
     try:
