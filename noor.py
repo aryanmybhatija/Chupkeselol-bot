@@ -328,7 +328,7 @@ async def process_terabox(user_id, terabox_url, msg):
             f"✨❍⭕️━━━━━━━━━━━━━━━⭕️❍✨"
         )
         
-        # Create caption and download button
+        # Create caption 
         caption = (
             f"╭━◝━━━━━━━━━━━━◜━╮\n"
             f"⚡❍⊱❁ Team Sonu ™\n"
