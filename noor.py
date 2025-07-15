@@ -11,7 +11,7 @@ from threading import Thread
 from urllib.parse import quote
 from pyrogram.enums import ParseMode
 from pyrogram import Client, filters
-from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
+from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, ChatMember
 from pyrogram.errors import FloodWait
 from dotenv import load_dotenv
 from flask import Flask, render_template
