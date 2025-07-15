@@ -277,6 +277,7 @@ async def process_terabox(user_id, terabox_url, msg):
             await delete_message(msg)
             return False
         
+
         # Prepare for upload
         await edit_message(
             msg,
@@ -290,7 +291,7 @@ async def process_terabox(user_id, terabox_url, msg):
             f"✨❍⭕️━━━━━━━━━━━━━━━⭕️❍✨"
         )
         
-        # Create caption 
+        # Create caption and download button
         caption = (
             f"╭━◝━━━━━━━━━━━━◜━╮\n"
             f"⚡❍⊱❁ Team Sonu ™\n"
@@ -301,44 +302,10 @@ async def process_terabox(user_id, terabox_url, msg):
             f"✨❍⭕️━━━━━━━━━━━━━━━⭕️❍✨"
         )
         
-        
-        # Send file with upload progress
-        is_video = file_name.lower().endswith(('.mp4', '.mkv', '.mov', '.avi', '.flv', '.webm'))
-        thumb_path = os.path.join(USER_DIR, "thumb.jpg")
-        
-        if "thumbnail" in data:
-            try:
-                thumb_data = requests.get(data["thumbnail"]).content
-                with open(thumb_path, "wb") as f:
-                    f.write(thumb_data)
-            except Exception as e:
-                logger.warning(f"Thumbnail download failed: {str(e)}")
-                thumb_path = None
-        
-        # Prepare for upload
-        await edit_message(
-            msg,
-            f"╭━◝━━━━━━━━━━━━◜━╮\n"
-            f"⚡❍⊱❁ Team Sonu ™\n"
-            f"╰━◞━━━━━━━━━━━━◟━╯\n\n"
-            f"📤 <b>Uploading:</b> <code>{file_name}</code>\n"
-            f"📦 <b>Size:</b> {readable_size}\n"
-            f"🔸 {progress_bar(0)} 🔸\n"
-            f"🚀 <b>Progress:</b> 0%\n"
-            f"✨❍⭕️━━━━━━━━━━━━━━━⭕️❍✨"
-        )
-        
-        # Create caption 
-        caption = (
-            f"╭━◝━━━━━━━━━━━━◜━╮\n"
-            f"⚡❍⊱❁ Team Sonu ™\n"
-            f"╰━◞━━━━━━━━━━━━◟━╯\n\n"
-            f"<pre>✅ Your File is Ready!</pre>\n\n"
-            f"📂 <b>File:</b> <code>{file_name}</code>\n"
-            f"📦 <b>Size:</b> {readable_size}\n"
-            f"✨❍⭕️━━━━━━━━━━━━━━━⭕️❍✨"
-        )
-        
+        # Create inline keyboard with direct download button
+        keyboard = InlineKeyboardMarkup([[  
+            InlineKeyboardButton(f"🔗 Direct Download {readable_size}", url=download_url)  
+        ]])
         
         # Send file with upload progress
         is_video = file_name.lower().endswith(('.mp4', '.mkv', '.mov', '.avi', '.flv', '.webm'))
@@ -480,6 +447,7 @@ async def process_terabox(user_id, terabox_url, msg):
             logger.info(f"🧹 Cleaned: {USER_DIR}")
         else:
             logger.warning(f"⚠️ Cleanup failed: {USER_DIR}")
+        
         
 
 # Start command handler
