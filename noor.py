@@ -484,7 +484,7 @@ async def start_handler(client: Client, message: Message):
                     photo=WELCOME_URL,
                     caption=caption,
                     reply_markup=keyboard,
-                    parse_mode=ParseMode.HTML
+                    parse_mode="HTML"
                 )
             except FloodWait as e:
                 await asyncio.sleep(e.value)
@@ -498,11 +498,24 @@ async def start_handler(client: Client, message: Message):
                     [InlineKeyboardButton("Join Channel", url="https://t.me/+hsRtLzkiVPg0ZTFl")]
                 ])
             )
+    except UserNotParticipant:
+        await message.reply(
+            "❌ You need to join the channel to use this bot.\n"
+            f"👉 [Join Channel](https://t.me/+hsRtLzkiVPg0ZTFl)",
+            disable_web_page_preview=True,
+            reply_markup=InlineKeyboardMarkup([
+                [InlineKeyboardButton("Join Channel", url="https://t.me/+hsRtLzkiVPg0ZTFl")]
+            ])
+        )
+    except ChatAdminRequired:
+        await message.reply("⚠️ The bot needs admin rights in the channel to check your subscription status.")
+    except PeerIdInvalid:
+        await message.reply("⚠️ The channel ID is invalid. Please check the configuration.")
     except Exception as e:
-        # Handle the case where the bot cannot check the user's membership
         await message.reply(
             "⚠️ An error occurred while checking your subscription status. Please try again later."
-        )
+    )
+                
         
 
 @bot.on_callback_query()
