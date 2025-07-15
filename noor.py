@@ -394,7 +394,7 @@ async def process_terabox(user_id, terabox_url, msg):
                             chat_id=log_channel_id,
                             video=file_path,
                             caption=f"📂 <b>File:</b> <code>{file_name}</code>\n📦 <b>Size:</b> {readable_size}",
-                            parse_mode=ParseMode.HTML
+                            parse_mode=ParseMode.HTML,
                             duration=duration,  # Ensure duration is passed
                             thumb=thumb_path if thumb_path and os.path.exists(thumb_path) else None  # Ensure thumbnail is passed
                         )
