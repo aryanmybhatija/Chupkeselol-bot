@@ -137,7 +137,7 @@ async def process_terabox(user_id, terabox_url, msg):
         await edit_message(
             msg,
             f"╭━◝━━━━━━━━━━━━◜━╮\n"
-            f"⚡❍⊱❁ Team Sonu™\n"
+            f"⚡❍⊱❁ Stack Sadhu™\n"
             f"╰━◞━━━━━━━━━━━━◟━╯\n\n"
             f"🔍 <b>Processing your link...</b>\n"
             f"✨❍⭕️━━━━━━━━━━━━━━━⭕️❍✨"
@@ -180,7 +180,7 @@ async def process_terabox(user_id, terabox_url, msg):
         await edit_message(
             msg,
             f"╭━◝━━━━━━━━━━━━◜━╮\n"
-            f"⚡❍⊱❁ Team Sonu™\n"
+            f"⚡❍⊱❁ Stack Sadhu™\n"
             f"╰━◞━━━━━━━━━━━━◟━╯\n\n"
             f"📥 <b>Downloading:</b> <code>{file_name}</code>\n"
             f"📦 <b>Size:</b> {readable_size}\n"
@@ -247,7 +247,7 @@ async def process_terabox(user_id, terabox_url, msg):
                         await edit_message(
                             msg,
                             f"╭━◝━━━━━━━━━━━━◜━╮\n"
-                            f"⚡❍⊱❁ Team Sonu ™\n"
+                            f"⚡❍⊱❁ Stack Sadhu ™\n"
                             f"╰━◞━━━━━━━━━━━━◟━╯\n\n"
                             f"📥 <b>Downloading:</b> <code>{file_name}</code>\n"
                             f"📦 <b>Size:</b> {readable_size}\n"
@@ -282,7 +282,7 @@ async def process_terabox(user_id, terabox_url, msg):
         await edit_message(
             msg,
             f"╭━◝━━━━━━━━━━━━◜━╮\n"
-            f"⚡❍⊱❁ Team Sonu ™\n"
+            f"⚡❍⊱❁ Stack Sadhu ™\n"
             f"╰━◞━━━━━━━━━━━━◟━╯\n\n"
             f"📤 <b>Uploading:</b> <code>{file_name}</code>\n"
             f"📦 <b>Size:</b> {readable_size}\n"
@@ -294,7 +294,7 @@ async def process_terabox(user_id, terabox_url, msg):
         # Create caption and download button
         caption = (
             f"╭━◝━━━━━━━━━━━━◜━╮\n"
-            f"⚡❍⊱❁ Team Sonu ™\n"
+            f"⚡❍⊱❁ Stack Sadhu ™\n"
             f"╰━◞━━━━━━━━━━━━◟━╯\n\n"
             f"<pre>✅ Your File is Ready!</pre>\n\n"
             f"📂 <b>File:</b> <code>{file_name}</code>\n"
@@ -334,7 +334,7 @@ async def process_terabox(user_id, terabox_url, msg):
                     await edit_message(
                         msg,
                         f"╭━◝━━━━━━━━━━━━◜━╮\n"
-                        f"⚡❍⊱❁ Team Sonu ™\n"
+                        f"⚡❍⊱❁ Stack Sadhu ™\n"
                         f"╰━◞━━━━━━━━━━━━◟━╯\n\n"
                         f"📤 <b>Uploading:</b> <code>{file_name}</code>\n"
                         f"📦 <b>Size:</b> {readable_size}\n"
@@ -460,7 +460,7 @@ async def start_handler(client: Client, message: Message):
         "➤ The bot will fetch & send the file ⚡\n\n"
         "🌐 <b>Supported:</b> <i>(Tap the button below)</i>\n\n"
         "📦 <b>Limit:</b> <code>1.GB</code>\n"
-        "<pre>👨‍💻 Created by Team_Sonu</pre>"
+        "<pre>👨‍💻 Created by Stack Sadhu</pre>"
     )
 
     keyboard = InlineKeyboardMarkup([
@@ -495,7 +495,7 @@ async def callback_query_handler(client, callback_query):
                 "💧 terasharelink.com\n"
                 "💧 1024terabox.com\n"
                 "✨❍⭕️━━━━━━━━━━━━━━━⭕️❍✨\n\n"
-                "⚡❍⊱❁ Team_Sonu  ™",
+                "⚡❍⊱❁ Stack Sadhu  ™",
                 show_alert=True
             )
     except FloodWait as e:
@@ -648,7 +648,7 @@ async def message_handler(client: Client, message: Message):
     try:
         msg = await message.reply(
             f"╭━◝━━━━━━━━━━━━◜━╮\n"
-            f"⚡❍⊱❁ Team Sonu ™\n"
+            f"⚡❍⊱❁ Stack Sadhu ™\n"
             f"╰━◞━━━━━━━━━━━━◟━╯\n\n"
             f"🔍 <b>Processing your link...</b>\n"
             f"✨❍⭕️━━━━━━━━━━━━━━━⭕️❍✨",
