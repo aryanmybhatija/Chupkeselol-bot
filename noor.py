@@ -481,9 +481,7 @@ async def start_handler(client: Client, message: Message):
     except FloodWait as e:
         await asyncio.sleep(e.value)
         await start_handler(client, message)
-    except Exception as e:
-        await message.reply("⚠️ An error occurred. Please try again later.")
-                
+    
 
 @bot.on_callback_query()
 async def callback_query_handler(client, callback_query):
