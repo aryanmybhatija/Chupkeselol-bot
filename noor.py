@@ -12,7 +12,6 @@ from urllib.parse import quote
 from pyrogram.enums import ParseMode
 from pyrogram import Client, filters
 from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
-from pyrogram.errors import UserNotParticipant, ChatAdminRequired, PeerIdInvalid
 from pyrogram.errors import FloodWait
 from dotenv import load_dotenv
 from flask import Flask, render_template
@@ -454,69 +453,37 @@ async def process_terabox(user_id, terabox_url, msg):
         
 
 # Channel ID
-FORCE_CHANNEL_ID = -1002735709676  # Aapka channel ID
-
 @bot.on_message(filters.command("start") & filters.private)
 async def start_handler(client: Client, message: Message):
-    # Check if the user is a member of the channel
     try:
-        chat_member = await client.get_chat_member(FORCE_CHANNEL_ID, message.from_user.id)
-        if chat_member.status in ["member", "administrator", "creator"]:
-            # User is a member, proceed with the normal flow
-            caption = (
-                "<pre>🔷🔹🔸♦️◈ 𝗧𝗘𝗥𝗔𝗕𝗢𝗫 𝗕𝗢𝗧 ◈♦️🔸🔹🔷</pre>\n\n"
-                "📘 <b>How It Works:</b>\n"
-                "➤ Paste your Terabox URL below 👇\n"
-                "➤ The bot will fetch & send the file ⚡\n\n"
-                "🌐 <b>Supported:</b> <i>(Tap the button below)</i>\n\n"
-                "📦 <b>Limit:</b> <code>1.GB</code>\n"
-                "<pre>👨‍💻 Created by Stack Sadhu</pre>"
-            )
-
-            keyboard = InlineKeyboardMarkup([
-                [InlineKeyboardButton("🌐 Supported Domains", callback_data="show_supported_domains")],
-                [InlineKeyboardButton("Join Channel", url="https://t.me/+hsRtLzkiVPg0ZTFl")],
-                [InlineKeyboardButton("Contact", url="https://t.me/Contact_AdminSbot")]
-            ])
-
-            try:
-                await message.reply_photo(
-                    photo=WELCOME_URL,
-                    caption=caption,
-                    reply_markup=keyboard,
-                    parse_mode="HTML"
-                )
-            except FloodWait as e:
-                await asyncio.sleep(e.value)
-                await start_handler(client, message)
-        else:
-            await message.reply(
-                "❌ You need to join the channel to use this bot.\n"
-                f"👉 [Join Channel](https://t.me/+hsRtLzkiVPg0ZTFl)",
-                disable_web_page_preview=True,
-                reply_markup=InlineKeyboardMarkup([
-                    [InlineKeyboardButton("Join Channel", url="https://t.me/+hsRtLzkiVPg0ZTFl")]
-                ])
-            )
-    except UserNotParticipant:
-        await message.reply(
-            "❌ You need to join the channel to use this bot.\n"
-            f"👉 [Join Channel](https://t.me/+hsRtLzkiVPg0ZTFl)",
-            disable_web_page_preview=True,
-            reply_markup=InlineKeyboardMarkup([
-                [InlineKeyboardButton("Join Channel", url="https://t.me/+hsRtLzkiVPg0ZTFl")]
-            ])
+        caption = (
+            "<pre>🔷🔹🔸♦️◈ 𝗧𝗘𝗥𝗔𝗕𝗢𝗫 𝗕𝗢𝗧 ◈♦️🔸🔹🔷</pre>\n\n"
+            "📘 <b>How It Works:</b>\n"
+            "➤ Paste your Terabox URL below 👇\n"
+            "➤ The bot will fetch & send the file ⚡\n\n"
+            "🌐 <b>Supported:</b> <i>(Tap the button below)</i>\n\n"
+            "📦 <b>Limit:</b> <code>1.GB</code>\n"
+            "<pre>👨‍💻 Created by Stack Sadhu</pre>"
         )
-    except ChatAdminRequired:
-        await message.reply("⚠️ The bot needs admin rights in the channel to check your subscription status.")
-    except PeerIdInvalid:
-        await message.reply("⚠️ The channel ID is invalid. Please check the configuration.")
+
+        keyboard = InlineKeyboardMarkup([
+            [InlineKeyboardButton("🌐 Supported Domains", callback_data="show_supported_domains")],
+            [InlineKeyboardButton("Join Channel", url="https://t.me/+hsRtLzkiVPg0ZTFl")],
+            [InlineKeyboardButton("Contact", url="https://t.me/Contact_AdminSbot")]
+        ])
+
+        await message.reply_photo(
+            photo=WELCOME_URL,
+            caption=caption,
+            reply_markup=keyboard,
+            parse_mode="HTML"
+        )
+    except FloodWait as e:
+        await asyncio.sleep(e.value)
+        await start_handler(client, message)
     except Exception as e:
-        await message.reply(
-            "⚠️ An error occurred while checking your subscription status. Please try again later."
-    )
+        await message.reply("⚠️ An error occurred. Please try again later.")
                 
-        
 
 @bot.on_callback_query()
 async def callback_query_handler(client, callback_query):
